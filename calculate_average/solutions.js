@@ -1,0 +1,1 @@
+let find_average = (array) => array.reduce((x, array) => x + array) / array.length;
