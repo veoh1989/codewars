@@ -1,0 +1,1 @@
+let double = (array) => maparr = array.map(x => x * 2);
