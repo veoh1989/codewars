@@ -1,0 +1,17 @@
+{
+  "name": "whiteboard03",
+  "version": "1.0.0",
+  "description": "whiteboarding day 3",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^22.1.2"
+  }
+}
