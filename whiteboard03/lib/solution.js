@@ -5,14 +5,12 @@ exports.traverse = function train(engine){
 
   if (!engine ) return null;
   if (typeof engine !== 'object') return null;
-  let keys = Object.keys(engine);
-  if (!keys.includes('value') || !keys.includes('next')) return null;
 
   for (let tmp = engine; tmp; tmp = tmp.next) {
+    let keys = Object.keys(tmp);
+    if (!keys.includes('value') || !keys.includes('next')) return null;
     if (typeof tmp.value !== 'number') return null;
     tot += tmp.value;
   }
-
-
   return tot;
 };
