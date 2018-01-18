@@ -11,3 +11,4 @@ exports.final = function finalNum(arr){
     runnerUp: unique_array[unique_array.length -2]
   };
 };
+
