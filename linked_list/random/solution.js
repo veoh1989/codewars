@@ -41,7 +41,8 @@ function buildOneTwoThree() {
 
 //----------------------------------------------------------------------
 //----------------------------------------------------------------------
-// Linked Lists - Length & Count //----------------------------------------------------------------------
+// Linked Lists - Length & Count
+//----------------------------------------------------------------------
 //----------------------------------------------------------------------
 
 // Implement Length() to count the number of nodes in a linked list.
@@ -105,7 +106,7 @@ function getNth(head, index) {
   current = current.next
   }
   if (count !== index || !current) { throw "error"; }
-
+}
 
 //----------------------------------------------------------------------
 //----------------------------------------------------------------------
@@ -120,34 +121,75 @@ function getNth(head, index) {
 // insertNth(1 -> 2 -> 3 -> null, 1, 7) === 1 -> 7 -> 2 -> 3 -> null)
 // insertNth(1 -> 2 -> 3 -> null, 3, 7) === 1 -> 2 -> 3 -> 7 -> null)
 
-  function Node(data) {
-    this.data = data;
-    this.next = null;
-  }
+function Node(data) {
+  this.data = data;
+  this.next = null;
+}
 
-  function insertNth(head, index, data) {
-   let newNode = new Node();
-      newNode.data = data;
-      newNode.next = null;
+function insertNth(head, index, data) {
+  let newNode = new Node();
+    newNode.data = data;
+    newNode.next = null;
 
-      if (head === null) {
-          return newNode;
-      }
-      if (index === 0) {
-          newNode.next = head;
-          head = newNode;
-          return head;
-      }
-   let prev = null;
-   let current = head;
-   let counter = 0;
-      while (current !=null && counter < index) {
-          prev = current;
-          current = current.next;
-          counter++;
-      }
-      if (counter !== index) throw "error"
-      newNode.next = prev.next;
-      prev.next = newNode;
-      return head;
+  if (head === null) return newNode;
+  if (index === 0) {
+    newNode.next = head;
+    head = newNode;
+    return head;
   }
+  let current = head;
+  let prev = null;
+  let counter = 0;
+
+  while (current !=null && counter < index) {
+    prev = current;
+    current = current.next;
+    counter++;
+  }
+  if (counter !== index) throw "error"
+
+  newNode.next = prev.next;
+  prev.next = newNode;
+  return head;
+}
+
+//----------------------------------------------------------------------
+//----------------------------------------------------------------------
+// Linked Lists - Sorted Insert
+//----------------------------------------------------------------------
+//----------------------------------------------------------------------
+
+// Write a SortedInsert() function which inserts a node into the correct location of a pre-sorted linked list which is sorted in ascending order. SortedInsert takes the head of a linked list and data used to create a node as arguments. SortedInsert() should also return the head of the list.
+
+// sortedInsert(1 -> 2 -> 3 -> null, 4) === 1 -> 2 -> 3 -> 4 -> null)
+// sortedInsert(1 -> 7 -> 8 -> null, 5) === 1 -> 5 -> 7 -> 8 -> null)
+// sortedInsert(3 -> 5 -> 9 -> null, 7) === 3 -> 5 -> 7 -> 9 -> null)
+
+
+function Node(data) {
+  this.data = data;
+  this.next = null;
+}
+
+function sortedInsert(head, data) {
+  let newNode = new Node()
+  newNode.data = data
+  newNode.next = null
+
+  let current = head;
+
+  if (head === null) {
+    return newNode;
+  } else if (current.data >= data) {
+    newNode.next = current;
+    current = current.next
+    head = newNode
+  } else {
+    while (current.next && current.next.data <= data) {
+      current = current.next;
+  }
+  newNode.next = current.next;
+  current.next = newNode;
+  }
+return head;
+}
